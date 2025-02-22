@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import i18n from '../../../i18n';
 import { useParams } from 'next/navigation';
+import CharitySlider from '@/app/components/charity-slider';
+import Footer from '@/app/components/Footer';
+import Sponsers from '@/app/components/Sponsers';
+import { MainNav } from '@/app/components/Nav';
 
 export default function HomePage() {
   const { t } = useTranslation();
@@ -11,7 +15,7 @@ export default function HomePage() {
   const { lang } = useParams(); // Get the current language from the URL
 
   useEffect(() => {
-    console.log('lang is', lang)
+
     // Update i18next language when the URL changes
     if (lang && i18n.language !== lang) {
       i18n.changeLanguage(lang as any);
@@ -31,8 +35,10 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1>{t('Statistiken')}</h1>
-      <p>{t('Möchten Sie {{name}} wirklich löschen?', { name: 'Test' })}</p>
+      <MainNav/>
+      <CharitySlider />
+      <Sponsers />
+      <Footer />
     </div>
   );
 }

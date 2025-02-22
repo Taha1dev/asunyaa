@@ -5,6 +5,7 @@ import I18nProvider from "./components/I18nProvider";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 const elMessiri = El_Messiri({
   variable: "--font-el-messiri",
+  display: 'swap',
   subsets: ["arabic"],
 });
 
@@ -21,11 +22,14 @@ export default function RootLayout({
   return (
     <html lang="de">
       <body
-        className={`${elMessiri.variable} antialiased`}
+        className={`${elMessiri.className} antialiased`}
       >
-        <I18nProvider> <header className="flex justify-end p-4 bg-white dark:bg-gray-900 shadow">
-          <LanguageSwitcher />
-        </header>{children}</I18nProvider>
+        <I18nProvider>
+          <header className="flex justify-end p-4 bg-white shadow">
+            <LanguageSwitcher />
+          </header>
+          {children}
+        </I18nProvider>
       </body>
     </html>
   );
