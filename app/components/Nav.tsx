@@ -51,7 +51,7 @@ export function MainNav() {
       <div className="container flex h-14 items-center w-full">
         <div className="mr-4 hidden md:flex">
           <Link className="mr-6 flex items-center space-x-2" href="/">
-            <Image src={logo} alt="Logo"  />
+            <Image src={logo} alt="Logo" />
           </Link>
           <NavigationMenu className="relative flex" dir={isEnglish ? "ltr" : "rtl"}>
             <List className="flex flex-row items-center gap-1 p-1">
