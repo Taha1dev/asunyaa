@@ -3,6 +3,7 @@ import { El_Messiri } from "next/font/google";
 import "./globals.css";
 import I18nProvider from "./components/I18nProvider";
 import LanguageSwitcher from "./components/LanguageSwitcher";
+import MainNav from "./components/Nav";
 const elMessiri = El_Messiri({
   variable: "--font-el-messiri",
   display: 'swap',
@@ -25,9 +26,7 @@ export default function RootLayout({
         className={`${elMessiri.className} antialiased`}
       >
         <I18nProvider>
-          <header className="flex justify-end p-4 bg-white shadow">
-            <LanguageSwitcher />
-          </header>
+          <MainNav />
           {children}
         </I18nProvider>
       </body>

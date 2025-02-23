@@ -1,7 +1,10 @@
 import React from 'react'
-
-export default function Button() {
+interface ButtonProps {
+  text: string,
+  onClick?: () => void
+}
+export default function Button(props: ButtonProps) {
   return (
-    <button className='bg-foreground text-white px-5 py-3 rounded font-semibold'>تبرع الآن</button>
+    <button onClick={props.onClick} className='bg-foreground text-white px-4 py-2 rounded font-semibold'>{props.text}</button>
   )
 }

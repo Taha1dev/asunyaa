@@ -7,15 +7,27 @@ import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { Indicator, Progress } from '@radix-ui/react-progress';
-import Header from './home-section/Header';
-import { charityItems } from '../constants';
+import SectionHeader from './section-header/SectionHeader';
+import { CharityItem, charityItems } from '../constants';
+import Link from 'next/link';
 
-
-export default function CharitySlider() {
+interface SliderProps {
+  charityItems: CharityItem[],
+  isSlider: boolean,
+  isMoreView: {
+    result: boolean,
+    href?: string | any
+  }
+}
+export default function CharitySlider({
+  charityItems,
+  isSlider,
+  isMoreView
+}: SliderProps) {
   const swiperRef = useRef<SwiperType>(null)
   return (
     <div className="container mx-auto px-4 py-8 rtl" dir="rtl">
-      <Header title='صدقة جارية' isSlider={true} button={{ text: 'عرض الكل', routerLink: '', swiperRef: swiperRef }} />
+      <SectionHeader title='صدقة جارية' isSlider={true} button={{ text: 'عرض الكل', routerLink: '', swiperRef: swiperRef }} />
 
       <Swiper
         modules={[Navigation]}
@@ -41,18 +53,25 @@ export default function CharitySlider() {
               <div className="p-4">
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                 <p className="text-grays mb-4">{item.description}</p>
-                <div className="space-y-2">
-                  <Progress className="relative overflow-hidden bg-[#e9e9ee] rounded-full w-full h-2">
-                    <Indicator dir='ltr'
-                      className="bg-foreground w-full h-full rounded-full  transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
-                      style={{ transform: `translateX(${100 - item.progress}%)` }}
-                    />
-                  </Progress>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-grays">الحالي ${item.current}</span>
-                    <span className="text-grays">المطلوب ${item.target}</span>
+                {isSlider && (
+                  <div className="space-y-2">
+                    <Progress className="relative overflow-hidden bg-[#e9e9ee] rounded-full w-full h-2">
+                      <Indicator dir='ltr'
+                        className="bg-foreground w-full h-full rounded-full  transition-transform duration-[660ms] ease-[cubic-bezier(0.65, 0, 0.35, 1)]"
+                        style={{ transform: `translateX(${100 - item.progress}%)` }}
+                      />
+                    </Progress>
+                    <div className="flex justify-between text-sm">
+                      <span className="text-grays">الحالي ${item.current}</span>
+                      <span className="text-grays">المطلوب ${item.target}</span>
+                    </div>
                   </div>
-                </div>
+                )}
+                {isMoreView.result && (
+                  <Link href={isMoreView?.href}>
+                    المزيد
+                  </Link>
+                )}
               </div>
             </div>
           </SwiperSlide>

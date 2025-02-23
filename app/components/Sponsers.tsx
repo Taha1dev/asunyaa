@@ -8,7 +8,7 @@ import { sponsers } from '../constants'
 
 export default function Sponsers() {
   return (
-    <div className=' bg-[#e9e9ee] flex justify-evenly py-4 items-center gap-16 backdrop-blur-lg flex-col sm:flex-row'>
+    <div className=' bg-[#e9e9ee] flex flex-wrap justify-evenly py-4 items-center gap-16 backdrop-blur-lg flex-col sm:flex-row'>
       {sponsers.reverse().map(item => (
         <Image
           key={item.id}

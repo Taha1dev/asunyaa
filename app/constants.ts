@@ -60,8 +60,7 @@ export const sponsers: SponsersDataProps[] = [
   },
 ]
 
-
-interface CharityItem {
+export interface CharityItem {
   id: number
   image: string | any
   title: string

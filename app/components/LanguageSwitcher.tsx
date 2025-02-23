@@ -3,6 +3,9 @@
 
 import { useRouter, usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import { DropdownMenu, Trigger, Content, Item } from '@radix-ui/react-dropdown-menu';
+import { ChevronDown } from 'lucide-react'; // Optional: For a dropdown icon
+import { useEffect } from 'react';
 
 export default function LanguageSwitcher() {
   const router = useRouter();
@@ -10,33 +13,51 @@ export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
   const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng); // Update i18next language
-    const newPathname = pathname.replace(/^\/[a-z]{2}/, `/${lng}`); // Update URL
+    i18n.changeLanguage(lng);
+    const newPathname = pathname.replace(/^\/[a-z]{2}/, `/${lng}`);
     router.push(newPathname);
+
+    if (lng === 'ar') {
+      document.documentElement.setAttribute('dir', 'rtl');
+    } else {
+      document.documentElement.setAttribute('dir', 'ltr');
+    }
   };
 
+  useEffect(() => {
+    if (i18n.language === 'ar') {
+    
+      document.documentElement.setAttribute('dir', 'rtl');
+    } else {
+      document.documentElement.setAttribute('dir', 'ltr');
+    }
+  }, [i18n.language]);
+
   return (
-    <div className="flex items-center space-x-2 bg-gray-100 dark:bg-gray-800 p-2 rounded-full">
-      <button
-        onClick={() => changeLanguage('de')}
-        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-          i18n.language === 'de'
-            ? 'bg-blue-500 text-white'
-            : 'bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-        }`}
-      >
-        DE
-      </button>
-      <button
-        onClick={() => changeLanguage('ar')}
-        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-          i18n.language === 'ar'
-            ? 'bg-blue-500 text-white'
-            : 'bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-        }`}
-      >
-        AR
-      </button>
-    </div>
+    <DropdownMenu >
+      <Trigger asChild >
+        <button className="flex items-center justify-center p-3 rounded-md bg-gray-100 hover:bg-gray-200 transition-colors">
+          <span className="text-sm font-medium text-gray-700">
+            {i18n.language.toUpperCase()}
+          </span>
+          <ChevronDown className="w-4 h-4 ml-1 text-gray-500" />
+        </button>
+      </Trigger>
+
+      <Content className="min-w-[100px] bg-white rounded-md shadow-lg border border-gray-200">
+        <Item
+          className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer outline-none"
+          onClick={() => changeLanguage('de')}
+        >
+          DE
+        </Item>
+        <Item
+          className="px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer outline-none"
+          onClick={() => changeLanguage('ar')}
+        >
+          AR
+        </Item>
+      </Content>
+    </DropdownMenu>
   );
 }
