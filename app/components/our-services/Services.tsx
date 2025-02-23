@@ -1,6 +1,6 @@
 import { Button } from "@radix-ui/themes";
 import Image from "next/image";
-import servicesImage from '@/public/faq-banner-image.png'
+import servicesImage from '@/public/faq.png'
 export default function Services() {
   return (
     <section className="bg-background text-white lg:py-40 py-28 md:py-32 px-6 md:px-12 lg:px-20">

@@ -15,8 +15,9 @@ import Link from "next/link"
 import logo from '@/public/asunya-logo.png'
 const LanguageSwitcher = dynamic(() => import('./LanguageSwitcher'),
   { ssr: false });
-import Button from "./Button"
+
 import dynamic from "next/dynamic"
+import { Button } from "@radix-ui/themes"
 const navItems = [
   { label: "الرئيسة", labelEn: "Home", href: "/" },
   { label: "الخدمات", labelEn: "Services", href: "/services" },
@@ -53,7 +54,9 @@ export default function MainNav() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Button text="تبرع الآن" />
+          <Button>
+            تبرع الآن
+          </Button>
           <LanguageSwitcher />
           <Dialog open={isOpen} onOpenChange={setIsOpen}>
             <Trigger asChild>

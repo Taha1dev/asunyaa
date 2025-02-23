@@ -1,12 +1,19 @@
+
 import img1 from '@/public/m1.png'
 import img2 from '@/public/m2.png'
 import img3 from '@/public/m3.png'
+
+import onimg1 from '@/public/on1.png'
+import onimg2 from '@/public/on2.png'
+import onimg3 from '@/public/on3.png'
 
 import brand1 from '@/public/brands/brand-2.png'
 import brand2 from '@/public/brands/brand-3.png'
 import brand3 from '@/public/brands/brand-4.png'
 import brand4 from '@/public/brands/brand-5.png'
 import brand5 from '@/public/brands/brand-6.png'
+
+import micImage from '@/public/mic.png'
 
 interface SponsersDataProps {
   id: number | string
@@ -60,7 +67,7 @@ export const sponsers: SponsersDataProps[] = [
   },
 ]
 
-export interface CharityItem {
+export interface SliderItem {
   id: number
   image: string | any
   title: string
@@ -69,8 +76,9 @@ export interface CharityItem {
   current: number
   progress: number
 }
+export type SliderItemWithoutProgress = Omit<SliderItem, 'target' | 'current' | 'progress'>;
 
-export const charityItems: CharityItem[] = [
+export const MICSliderItems: SliderItem[] = [
   {
     id: 1,
     image: img1,
@@ -108,3 +116,79 @@ export const charityItems: CharityItem[] = [
     progress: 60,
   },
 ];
+
+export const OngoingSliderItems: SliderItem[] = [
+  {
+    id: 1,
+    image: onimg1,
+    title: "سعادة قلب",
+    description: "وسائلنا للخدمات التي لن توجد مقابل...",
+    target: 1000,
+    current: 500,
+    progress: 60,
+    
+  },
+  {
+    id: 2,
+    image: onimg2,
+    title: "سعادة قلب",
+    description: "وسائلنا للخدمات التي لن توجد مقابل...",
+    target: 1000,
+    current: 500,
+    progress: 60,
+    
+  },
+  {
+    id: 3,
+    image: onimg3,
+    title: "سعادة قلب",
+    description: "وسائلنا للخدمات التي لن توجد مقابل...",
+    target: 1000,
+    current: 500,
+    progress: 60,
+    
+  },
+  {
+    id: 4,
+    image: onimg1,
+    title: "سعادة قلب",
+    description: "وسائلنا للخدمات التي لن توجد مقابل...",
+    target: 1000,
+    current: 500,
+    progress: 60,
+    
+  },
+];
+
+export const charitySliderItems: SliderItemWithoutProgress[] = [
+  {
+    id: 1,
+    image: micImage,
+    title: "سعادة قلب",
+    description: `مشروع "بئر الحياة" يهدف إلى توفير مياه شرب نظيفة ومستدامة للمجتمعات التي تعاني من نقص المياه. نقوم بحفر الآبار في المناطق النائية والجافة لضمان وصول المياه إلى الأسر والأفراد بشكل دائم.  `,
+  
+  },
+  {
+    id: 2,
+    image: micImage,
+    title: "سعادة قلب",
+    description: `مشروع "بئر الحياة" يهدف إلى توفير مياه شرب نظيفة ومستدامة للمجتمعات التي تعاني من نقص المياه. نقوم بحفر الآبار في المناطق النائية والجافة لضمان وصول المياه إلى الأسر والأفراد بشكل دائم.  `,
+  
+  },
+  {
+    id: 3,
+    image: micImage,
+    title: "سعادة قلب",
+    description: `مشروع "بئر الحياة" يهدف إلى توفير مياه شرب نظيفة ومستدامة للمجتمعات التي تعاني من نقص المياه. نقوم بحفر الآبار في المناطق النائية والجافة لضمان وصول المياه إلى الأسر والأفراد بشكل دائم.  `,
+  
+  },
+  {
+    id: 4,
+    image: micImage,
+    title: "سعادة قلب",
+    description: `مشروع "بئر الحياة" يهدف إلى توفير مياه شرب نظيفة ومستدامة للمجتمعات التي تعاني من نقص المياه. نقوم بحفر الآبار في المناطق النائية والجافة لضمان وصول المياه إلى الأسر والأفراد بشكل دائم.  `,
+
+  },
+];
+
+

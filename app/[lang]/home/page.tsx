@@ -6,8 +6,13 @@ import i18n from '../../../i18n';
 import { useParams } from 'next/navigation';
 
 import dynamic from 'next/dynamic';
-const CharitySlider = dynamic(() => import('@/app/components/charity-slider'),
-  { ssr: false });
+import CharitySlider from '@/app/components/sliders/charity-slider';
+import OngoingSlider from '@/app/components/sliders/ongoingCharity-slider';
+import MICSlider from '@/app/components/sliders/mic-slider';
+import SliderContainer from '@/app/components/sliders/SliderContainer';
+import FAQ from '@/app/components/FAQ';
+import Gallery from '@/app/components/Gallery';
+
 const Footer = dynamic(() => import('@/app/components/Footer'),
   { ssr: false });
 const Sponsers = dynamic(() => import('@/app/components/Sponsers'),
@@ -47,8 +52,10 @@ export default function HomePage() {
         <StatsCard />
       </div>
       <Services />
-      <CharitySlider />
+      <SliderContainer />
+      <FAQ />
       <Sponsers />
+      <Gallery/>
       <Footer />
     </div>
   );
